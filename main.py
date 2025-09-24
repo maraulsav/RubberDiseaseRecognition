@@ -79,7 +79,7 @@ elif app_mode == "Deteksi Penyakit":
                 #Define Class
                 class_name = ['Corynespora', 'Healthy', 'Oidium', 'Pestalotiopsis']
                 st.success("Model memprediksi bahwa itu {}".format(class_name[result_index]))
-#Halama Tentang
+#Halaman Tentang
 elif app_mode == "Tentang":
     st.title("Tentang Sistem")
     st.markdown("""
