@@ -71,7 +71,7 @@ app_mode = st.sidebar.selectbox("Select Page", ["Beranda", "Deteksi Penyakit", "
 if app_mode == "Beranda":
     st.header("DETEKSI PENYAKIT KARET")
     image_path = "homepage.png"
-    st.image(image_path,use_container_width=True)
+    st.image(image_path, width=700)
     st.markdown("""
     Selamat datang di website kami!
     
