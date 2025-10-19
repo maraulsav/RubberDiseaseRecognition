@@ -107,7 +107,7 @@ elif app_mode == "Deteksi Penyakit":
     test_image = st.file_uploader("Pilih Gambar", type=["jpg", "jpeg", "png"])
 
     if test_image is not None:
-        st.image(test_image, use_container_width=True)
+        st.image(test_image, width = 650)
 
         if st.button("Prediksi"):
             with st.spinner("Tolong tunggu sebentar..."):
