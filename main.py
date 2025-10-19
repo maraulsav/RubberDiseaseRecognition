@@ -25,6 +25,44 @@ def model_prediction(test_image):
     result_index = np.argmax(prediction)
     return result_index
 
+# Informasi penyakit dan rekomendasi
+disease_info = {
+    "Corynespora": {
+        "deskripsi": "Penyakit ini disebabkan oleh jamur *Corynespora cassiicola*, yang menyebabkan bercak coklat tidak teratur dan bercah hitam pada tulang daun pada daun.",
+        "penanganan": [
+            "Melakukan pemupukan nitrogen dengan intensitas tinggi (dua kali dosis anjuran) pada saat daun-daun baru mulai terbentuk.",
+            "Melakukan penghembusan serbuk belerang seminggu sekali selama lima minggu.",
+            "Aplikasikan fungisida berbahan aktif mancozeb '0,25%' dengan dosis 400-600 l/ha melalui penyemprotan di siang hari, atau lakukan fogging dengan minyak mineral pada malam hari.",
+            "Aplikasikan juga fungisida berbahan aktif klorotalonil '0,2%' dengan dosis 0,75 kg/ha.",
+           
+        ]
+    },
+    "Healthy": {
+        "deskripsi": "Daun tampak hijau dan sehat tanpa tanda infeksi jamur atau kerusakan jaringan.",
+        "penanganan": [
+            "Pertahankan pola perawatan yang baik.",
+            "Pastikan tanaman mendapat cahaya matahari cukup dan tidak tergenang air.",
+            "Lakukan pemantauan rutin untuk deteksi dini penyakit."
+        ]
+    },
+    "Oidium": {
+        "deskripsi": "Disebabkan oleh jamur *Oidium heveae*, dikenal sebagai embun tepung. Ditandai dengan lapisan putih pada permukaan daun.",
+        "penanganan": [
+            "Pemberian pupuk nitrogen satu kali dosis anjuran",
+            "Lakukan upaya pencegahan dengan memberikan pengabutan belerang 6–7 kg/ha dengan interval 3–7 hari di malam hari.",
+            "Gunakan fungisida berbahan aktif triadimefon '0,25%' dengan dosis 600 l/ha dan interval 7–10 hari dengan cara fogging, atau lakukan penyemprotan fungisida berbahan aktif mancozeb di siang hari.",
+        ]
+    },
+    "Pestalotiopsis": {
+        "deskripsi": "Disebabkan oleh jamur *Pestalotiopsis spp.*, menyebabkan bercak daun dengan tepi berwarna gelap dan pusat keabu-abuan.",
+        "penanganan": [
+            "Tambahkan pupuk ekstra 25% N dan K untuk membantu tanaman karet tumbuh dengan baik.",
+            "Perhatikan beban penyadapan agar sesuai dengan kemampuan klon.",
+            "Gunakan fungisida berbahan aktif heksakonazol, propikonazol, atau thiophanate methyl dengan cara fogging atau spraying."
+        ]
+    }
+}
+
 # Sidebar
 st.sidebar.title("Dashboard")
 app_mode = st.sidebar.selectbox("Select Page", ["Beranda", "Deteksi Penyakit", "Tentang"])
@@ -78,7 +116,17 @@ elif app_mode == "Deteksi Penyakit":
                 result_index = model_prediction(test_image)
                 #Define Class
                 class_name = ['Corynespora', 'Healthy', 'Oidium', 'Pestalotiopsis']
-                st.success("Model memprediksi bahwa itu {}".format(class_name[result_index]))
+                predicted_class = class_name[result_index]
+                st.success(f"Model memprediksi bahwa daun tersebut **{predicted_class}**")
+                info = disease_info[predicted_class]
+                st.subheader("🩺 Deskripsi Penyakit")
+                st.write(info["deskripsi"])
+                st.subheader("🌿 Rekomendasi Penanganan")
+                for i, langkah in enumerate(info["penanganan"], start=1):
+                    st.markdown(f"{i}. {langkah}")
+
+
+
 #Halaman Tentang
 elif app_mode == "Tentang":
     st.title("Tentang Sistem")
