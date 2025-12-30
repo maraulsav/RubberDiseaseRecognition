@@ -1,3 +1,5 @@
-This folder contain my model of rubber disease recognition
-There are keras, json and ipynb file
-I trained this model at Jupyter Notebook
+Hello All 
+This folder contain the codes that I input on Jupyter Notebook (ipynb files) and the training history (json file)
+Oh yeah if you wanted to copy that code, run it step by step from above. 
+That code is working btw even though you may see there are some errors.. 
+it is because I ever try to reload and did not run it again from the top
