@@ -1,0 +1,4 @@
+Hello
+This folder contain codes to make my website on streamlit.
+The website is needed to be an interface between users and the model itself 
+(so that the model can be operated without user need to download it first)
